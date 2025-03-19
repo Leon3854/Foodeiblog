@@ -1,0 +1,18 @@
+{
+  "semi": false, //точка с запятой в конце кода
+  "singleQuote": true, // одинарные кавычки
+  "printWidth": 80, // максимальная длина строки
+  "tabWidth": 2, // сколько отступов от начала строки при переходе на новую
+  "useTabs": true,
+  // если стрелочная функция имеет только одну строку то круглые скобки будут опущены
+  "arrowParens": "avoid",
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "/routes/",
+    "/middleware/",
+    "^../(.*)",
+    "^./(.*)"
+  ],
+  "importOrderSeparation": true, // импорты у нас разделены пробелами
+  "importOrderSortSpecifiers": true // импорты сортерованный по спецификации
+}
