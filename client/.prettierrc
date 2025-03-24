@@ -16,3 +16,4 @@
   "importOrderSeparation": true, // импорты у нас разделены пробелами
   "importOrderSortSpecifiers": true // импорты сортерованный по спецификации
 }
+
