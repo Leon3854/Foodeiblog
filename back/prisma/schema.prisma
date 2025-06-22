@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  email    String @unique
+  password String
+
+  isAdmin Boolean @default(false) @map("is_admin")
+
+  name       String?
+  avatarPath String  @default("/uploads/default-avatar.png") @map("avatar_path")
+}
+
+model Files {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  fileUrl  String @map("file_url")
+  nameFile String @map("file_name")
+
+  // Универсальные поля для связи
+  // entityType EntityType? //это полиморфный подход // "ABOUT", "CONTACTS"
+  // entityId   Int? // ID связанной сущности
+
+  // Явные связи (только для About)
+  // about About? @relation(fields: [entityId], references: [id], onDelete: Cascade, map: "fk_files_about")
+
+  // @@index([entityType, entityId])
+}
+
+model About {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  title String?
+  text  String?
+
+  @@map("About")
+}
+
+model Contacts {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  title   String?
+  text    String?
+  name    String?
+  email   String? @unique
+  website String?
+  message String?
+  phone   String?
+  address String?
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name    String @db.VarChar(100)
+  email   String @db.VarChar(100)
+  website String @db.VarChar(100)
+  message String @db.Text
+
+  // Дополнительные поля (опционально)
+  phone      String? @db.VarChar(20) // Телефон
+  status     String  @default("new") // Статус: new, read, answered
+  adminNotes String? @db.Text // Заметки админа
+}
+
+enum EntityType {
+  ABOUT
+}

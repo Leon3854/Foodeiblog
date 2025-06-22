@@ -1,0 +1,2 @@
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "fk_files_about" FOREIGN KEY ("entityId") REFERENCES "About"("id") ON DELETE CASCADE ON UPDATE CASCADE;

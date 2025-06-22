@@ -1,0 +1,4 @@
+/* Заменяем Sass-импорты на современный синтаксис */
+@use "./styles/style" as *;
+
+/* Если owl.carousel.min.css и slicknav.min.css нужны, подключаем их в main.tsx */

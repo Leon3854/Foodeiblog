@@ -1,0 +1,14 @@
+.header__menu ul li a {
+  text-decoration: none;
+}
+
+.header__menu ul li a.active {
+  color: #f4952f;
+}
+
+.header__menu ul li.active:after {
+  opacity: 1;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
