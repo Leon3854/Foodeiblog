@@ -3,13 +3,16 @@ import { useEffect } from 'react';
 const usePreloader = () => {
     useEffect(() => {
         const handleLoad = () => {
+            // создание констант
             const loader = document.querySelector('.loader');
             const preloader = document.getElementById('preloder');
 
+            // если есть данный класс то добавляем еще один класс от
             if (loader) {
                 loader.classList.add('fade-out'); // Добавляем класс для анимации
             }
 
+            // если есть данный класс то тогда через метод добавляем класс и ситили
             if (preloader) {
                 setTimeout(() => {
                     preloader.classList.add('fade-out'); // Добавляем класс для анимации
@@ -18,6 +21,7 @@ const usePreloader = () => {
             }
         };
 
+        // добавляем обработчик события
         window.addEventListener('load', handleLoad);
 
         // Убираем обработчик события при размонтировании компонента
